@@ -54,7 +54,7 @@ The architecture follows a batch ELT approach. Python ingestion tasks orchestrat
 dbt would standardise classifications, validate records and populate the warehouse's fact and dimension tables. Superset would query the warehouse for reporting. Data would be refreshed annually following source publication, with additional runs for corrections. Validation would include non-null reporting years, uniqueness of the theatre--production--year key in the repertoire dataset, and checks for unmatched classification codes. Failed checks would flag affected records for review before publication.
 
 ```mermaid
-flowchart TD
+flowchart LR
     A["Theatre Agency<br/>Annual repertoire XLS exports"]
     B["Statistics Estonia<br/>KU091 API"]
     C["File ingestion<br/>Python tasks in Airflow<br/>Annually; reload corrections"]
@@ -71,9 +71,6 @@ flowchart TD
     F -->|"Validation passed"| G
     G --> H
 ```
-
-\includegraphics[width=0.5\textwidth]{mermaid-diagram.png}
-
 Figure 1. Proposed batch data architecture for integrating production-level repertoire statistics and national theatre aggregates.
 
 ## Data Model
